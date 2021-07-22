@@ -1,0 +1,51 @@
+version: "3.4"
+services:
+  db:
+    image: postgres:latest
+    expose: ["5432"]
+    volumes:
+      - app-db-data:/var/lib/postgresql/data/pgdata
+    environment:
+      - PGDATA=/var/lib/postgresql/data/pgdata
+      - POSTGRES_PASSWORD=root
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+    - "5050:5050"
+    networks:
+      - default
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=beans@beans.b
+      - PGADMIN_DEFAULT_PASSWORD=root
+    depends_on:
+      - db
+    env_file:
+      - .env
+    volumes:
+    - pgadmin:/var/lib/pgadmin
+  
+  backend:
+    depends_on:
+      - db
+    ports:
+    - "80:80"
+    environment:
+      - DB_USER=postgres
+      - DB_PASSWORD=root
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_NAME=postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+#  frontend:
+#    build:
+#      context: frontend
+#      args:
+#        FRONTEND_ENV: ${FRONTEND_ENV-production}
+
+volumes:
+  app-db-data:
+  pgadmin:
