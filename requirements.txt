@@ -1,0 +1,15 @@
+asyncpg
+alembic
+fastapi
+gino
+gino-starlette
+greenlet
+h11
+prometheus-client
+pydantic
+SQLAlchemy
+SQLAlchemy-Utils
+starlette
+starlette-prometheus
+uvicorn
+psycopg2-binary

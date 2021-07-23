@@ -24,12 +24,24 @@ services:
       - .env
     volumes:
     - pgadmin:/var/lib/pgadmin
+
+  prefect:
+    image: prefecthq/prefect:latest-python3.8
+    ports:
+    - "8080:8080"
+    networks:
+      - default
+    volumes:
+    - prefect
   
   backend:
     depends_on:
       - db
     ports:
-    - "80:80"
+    - "5001:5001"
+    volumes:
+    - ./app/:/app/
+    command: uvicorn main:app --reload --host=0.0.0.0 --port=5001
     environment:
       - DB_USER=postgres
       - DB_PASSWORD=root
@@ -49,3 +61,4 @@ services:
 volumes:
   app-db-data:
   pgadmin:
+  prefect:
