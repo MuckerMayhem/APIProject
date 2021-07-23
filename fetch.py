@@ -19,7 +19,9 @@ def extract(url: str) -> pd.DataFrame:
 
 
 def transform(data: pd.DataFrame) -> pd.DataFrame:
+    # remove unnamed columns
     data = data.loc[:, ~data.columns.str.contains('^Unnamed')]
+    # drop columns we don't care about
     data.drop(
         ['Latitude (Decimal Degrees)', 'Longitude (Decimal Degrees)',
          'Number of Counts Performed', 'Average L. salmonis motiles per fish',
