@@ -1,1 +1,1 @@
-from app.models.product import Product
+from app.models.fish import Product

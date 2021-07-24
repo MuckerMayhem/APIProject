@@ -16,7 +16,7 @@ services:
     networks:
       - default
     environment:
-      - PGADMIN_DEFAULT_EMAIL=beans@beans.b
+      - PGADMIN_DEFAULT_EMAIL=colehoul@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=root
     depends_on:
       - db
@@ -25,14 +25,14 @@ services:
     volumes:
     - pgadmin:/var/lib/pgadmin
 
-  prefect:
-    image: prefecthq/prefect:latest-python3.8
-    ports:
-    - "8080:8080"
-    networks:
-      - default
-    volumes:
-    - prefect
+#  prefect:
+#    image: prefecthq/prefect:latest-python3.8
+#    ports:
+#    - "8080:8080"
+#    networks:
+#      - default
+#    volumes:
+#    - prefect
   
   backend:
     depends_on:
@@ -41,7 +41,7 @@ services:
     - "5001:5001"
     volumes:
     - ./app/:/app/
-    command: uvicorn main:app --reload --host=0.0.0.0 --port=5001
+    command: python3 -m uvicorn main:app --reload --host=0.0.0.0 --port=5001
     environment:
       - DB_USER=postgres
       - DB_PASSWORD=root
@@ -49,7 +49,7 @@ services:
       - DB_PORT=5432
       - DB_NAME=postgres
     build:
-      context: .
+      context: app/
       dockerfile: Dockerfile
 
 #  frontend:

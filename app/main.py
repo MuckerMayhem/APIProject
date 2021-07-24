@@ -5,8 +5,10 @@ import uvicorn
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-import app.constants as constants
+from app import constants
 from app.database import SessionLocal
+
+ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 app = FastAPI(title=constants.API_TITLE,
               description=constants.API_DESCRIPTION,
