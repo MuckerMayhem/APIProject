@@ -32,18 +32,26 @@ def transform(data: pd.DataFrame) -> pd.DataFrame:
                       'Average caligus per fish'
                       ],
                      )
-
-    data.rename(columns={
+    # rename columns for ease of use later
+    data = data.rename(columns={
         'Facility Reference \nNumber': 'facility_ref',
-        'License Holder': 'licence_holder',
+        'Licence Holder': 'licence_holder',
         'Site Common Name': 'site_name',
         'Fish Health Zone': 'fish_health_zone',
         'Comments': 'comments',
         'Year Class': 'year_class',
     })
 
-    data.apply(lambda x: datetime.datetime())
+    # combine the 'Year' and 'Month' columns into 'Date', dropping after
+    data['Date'] = data['Year'].astype(str) + " " + data["Month"]
+    data = data.drop(
+        columns=[
+            'Year',
+            'Month'
+        ]
+    )
 
-    for col in data.columns:
-        print(col)
+    # transform the values in the date column into actual datetime values
+    data['Date'] = data['Date'].apply(lambda x: datetime.strptime(x, "%Y %B"))
+
     return data
