@@ -7,10 +7,10 @@ from sqlalchemy.orm import sessionmaker
 from dotenv import load_dotenv
 load_dotenv()
 
-user = os.environ.get("DB_USER")
-password = os.environ.get("DB_PASSWORD")
-hostname = os.environ.get("DB_HOST")
-db = os.environ.get("DB_NAME")
+user = os.environ.get("POSTGRES_USER")
+password = os.environ.get("POSTGRES_PASSWORD")
+hostname = os.environ.get("POSTGRES_HOST")
+db = os.environ.get("POSTGRES_DB")
 
 SQLALCHEMY_DATABASE_URL = f"postgresql+psycopg2://{user}:{password}@{hostname}/{db}"
 
