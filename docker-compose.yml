@@ -2,6 +2,8 @@ version: "3.4"
 services:
   db:
     image: postgres:latest
+    ports:
+    - "5432:5432"
     expose: ["5432"]
     volumes:
       - app-db-data:/var/lib/postgresql/data/pgdata
@@ -18,21 +20,11 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=colehoul@gmail.com
       - PGADMIN_DEFAULT_PASSWORD=root
+      - PGADMIN_LISTEN_PORT=5050
     depends_on:
       - db
-    env_file:
-      - .env
     volumes:
     - pgadmin:/var/lib/pgadmin
-
-#  prefect:
-#    image: prefecthq/prefect:latest-python3.8
-#    ports:
-#    - "8080:8080"
-#    networks:
-#      - default
-#    volumes:
-#    - prefect
   
   backend:
     depends_on:
@@ -47,7 +39,7 @@ services:
       - DB_PASSWORD=root
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_NAME=postgres
+      - DB_NAME=api
     build:
       context: app/
       dockerfile: Dockerfile
@@ -61,4 +53,3 @@ services:
 volumes:
   app-db-data:
   pgadmin:
-  prefect:

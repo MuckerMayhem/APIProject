@@ -14,10 +14,10 @@ class Fish(Base):
     # month = Column(Integer, nullable=False)
     date = Column(DateTime, nullable=False)
     facility_ref_number = Column(Integer, nullable=False)
-    license_holder = Column(String, nullable=False)
-    site_common_name = Column(String, nullable=False)
+    licence_holder = Column(String, nullable=False)
+    site_name = Column(String, nullable=False)
     fish_health_zone = Column(Float, nullable=False)
-    counts_performed = Column(Integer, nullable=False)
+    counts_performed = Column(Integer, nullable=True)
 
 
 

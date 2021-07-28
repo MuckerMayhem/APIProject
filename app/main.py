@@ -1,7 +1,5 @@
 import os
 
-import uvicorn
-
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
@@ -22,7 +20,6 @@ app.add_middleware(
 )
 
 
-# Dependency
 def get_db():
     db = SessionLocal()
     try:
@@ -35,3 +32,4 @@ def get_db():
 async def root():
     msg = {"status": "running"}
     return msg
+

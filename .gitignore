@@ -16,4 +16,4 @@ Thumbs.db
 # IntelliJ
 .idea/
 
-/.env
+/app/.env
