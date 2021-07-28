@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from app import schemas
-from app.models import fish as FishModel
+import schemas
+from models import fish as FishModel
 
 
 def get_fish(db: Session, fish_id: int):

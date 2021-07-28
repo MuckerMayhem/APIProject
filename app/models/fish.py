@@ -3,7 +3,9 @@ import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from datetime import date
 
-from database import Base
+from sqlalchemy.ext.declarative import declarative_base
+
+from database import Base, engine
 
 
 class Fish(Base):

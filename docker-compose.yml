@@ -40,7 +40,7 @@ services:
       - DB_PASSWORD=postgres
       - DB_HOST=db
       - DB_PORT=5432
-      - DB_NAME=api
+      - DB_NAME=fastapi
     build:
       context: app/
       dockerfile: Dockerfile

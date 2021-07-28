@@ -3,7 +3,8 @@ import os
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from app import constants
+import constants
+
 from database import SessionLocal
 
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
