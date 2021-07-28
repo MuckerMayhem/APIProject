@@ -34,3 +34,4 @@ async def root():
     msg = {"status": "running"}
     return msg
 
+print("push")
