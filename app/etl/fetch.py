@@ -11,9 +11,9 @@ from datetime import datetime
 from fastapi import Depends
 from sqlalchemy.orm import Session
 
-from app.main import ROOT_DIR, get_db
-from app.crud import create_fish_data
-from app.schemas import Fish
+from main import ROOT_DIR, get_db
+from crud import create_fish_data
+from schemas import Fish
 
 
 def extract(url: str) -> pd.DataFrame:

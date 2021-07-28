@@ -15,7 +15,7 @@ env:
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: testing
   POSTGRES_HOST: localhost
-  POSTGRES_DB: api
+  POSTGRES_DB: postgres
 
 jobs:
   backend-tests:

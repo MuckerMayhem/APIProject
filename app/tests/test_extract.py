@@ -6,10 +6,10 @@ from fastapi.testclient import TestClient
 
 from dotenv import load_dotenv
 
-from app.etl import fetch
-from app.main import app
+from etl import fetch
+from main import app
 
-from app.database import SessionLocal as TestingSessionLocal
+from database import SessionLocal as TestingSessionLocal
 
 load_dotenv()
 

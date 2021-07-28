@@ -3,7 +3,7 @@ import datetime
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from datetime import date
 
-from app.database import Base
+from database import Base
 
 
 class Fish(Base):
