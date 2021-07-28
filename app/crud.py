@@ -17,7 +17,5 @@ def create_fish_data(db: Session, fish: schemas.Fish):
         fish_health_zone=fish.fish_health_zone,
         # counts_performed=fish.counts_performed
     )
-    db.add(new_entry)
-    db.commit()
-    db.refresh(new_entry)
+
     return new_entry

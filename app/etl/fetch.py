@@ -65,15 +65,18 @@ def transform(data: pd.DataFrame) -> pd.DataFrame:
 
 
 def load(data: pd.DataFrame, db: Session = next(get_db())):
-
+    fishes = []
     for index, row in data.iterrows():
-        create_fish_data(db, Fish(
+        fishes.append(create_fish_data(db, Fish(
             date=row['date'],
             facility_ref_number=row['facility_ref_number'],
             licence_holder=row['licence_holder'],
             site_name=row['site_name'],
             fish_health_zone=row['fish_health_zone']
-        ))
+        )))
+
+    db.bulk_save_objects(fishes)
+    db.commit()
     # print(data['date'])
     # data['date'] = data['date'].to_datetime()
     # data.apply(create_fish_data(db, Fish(date=data['date'],
