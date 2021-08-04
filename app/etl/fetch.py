@@ -77,10 +77,3 @@ def load(data: pd.DataFrame, db: Session = next(get_db())):
 
     db.bulk_save_objects(fishes)
     db.commit()
-    # print(data['date'])
-    # data['date'] = data['date'].to_datetime()
-    # data.apply(create_fish_data(db, Fish(date=data['date'],
-    #                                      facility_ref_number=data['facility_ref_number'],
-    #                                      licence_holder=data['licence_holder'],
-    #                                      site_name=data['site_name'],
-    #                                      fish_health_zone=data['fish_health_zone'])))
