@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: API
+  name: backend
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+        - name: backend
+          image: apiproject_backend:latest
+          imagePullPolicy: Never
+          command: ["/bin/sh", "-c"]
+          args:
+            - printenv;
+              cd /;
+              ls -la;
+              cd /app;
+              ls -la;
+              python3 -m uvicorn main:app --host 0.0.0.0 --port 5001;
+          env:
+            - name: DB_HOST
+              value: db
+            - name: DB_NAME
+              value: fastapi
+            - name: DB_PASSWORD
+              value: postgres
+            - name: DB_PORT
+              value: "5432"
+            - name: DB_USER
+              value: postgres
+          ports:
+            - containerPort: 5001
+              name: gunicorn
+          resources: {}
+          volumeMounts:
+            - mountPath: /app/
+              name: backend-claim
+      restartPolicy: Always
+      volumes:
+        - name: backend-claim
+          persistentVolumeClaim:
+            claimName: backend-claim0
+status: {}
