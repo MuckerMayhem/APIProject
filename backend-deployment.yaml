@@ -19,16 +19,11 @@ spec:
     spec:
       containers:
         - name: backend
-          image: apiproject_backend:latest
+          image: apiproject_backend
           imagePullPolicy: Never
           command: ["/bin/sh", "-c"]
           args:
-            - printenv;
-              cd /;
-              ls -la;
-              cd /app;
-              ls -la;
-              python3 -m uvicorn main:app --host 0.0.0.0 --port 5001;
+            - python3 -m uvicorn main:app --host 0.0.0.0 --port 5001;
           env:
             - name: DB_HOST
               value: db
@@ -44,12 +39,5 @@ spec:
             - containerPort: 5001
               name: gunicorn
           resources: {}
-          volumeMounts:
-            - mountPath: /app/
-              name: backend-claim
       restartPolicy: Always
-      volumes:
-        - name: backend-claim
-          persistentVolumeClaim:
-            claimName: backend-claim0
 status: {}
