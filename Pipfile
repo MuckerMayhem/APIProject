@@ -8,7 +8,7 @@ pylint = "*"
 pytest = "*"
 
 [packages]
-fastapi = "*"
+fastapi = ">=0.65.2"
 alembic = "*"
 uvicorn = "*"
 sqlalchemy = "*"
@@ -17,6 +17,7 @@ psycopg2-binary = "*"
 python-multipart = "*"
 requests = "*"
 python-dotenv = "*"
+urllib3 = ">=1.26.5"
 
 [requires]
 python_version = "3.8"
